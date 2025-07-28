@@ -2,22 +2,11 @@
 include .env
 export
 
-SQLITE_FILE ?= output/irsx-geography.sqlite
+output/database.sqlite:
+	rm -rfv output
 
-optimizer: ${SQLITE_FILE}
-	sqlite3 ${SQLITE_FILE} \
-		"\
-		CREATE INDEX idx_cities_parent ON cities(province_id, city_id); \
-		CREATE INDEX idx_districts_parent ON districts(province_id, city_id, district_id); \
-		CREATE INDEX idx_cities_parent_name ON cities(province_id, city_name); \
-		CREATE INDEX idx_districts_parent_name ON districts(province_id, city_id, district_name); \
-		VACUUM;\
-		"
-
-${SQLITE_FILE}: output
-	rm -fv ${SQLITE_FILE}
 	mysql2sqlite \
-		-f ${SQLITE_FILE} \
+		-f output/database.sqlite \
 		--mysql-host ${MYSQL_HOST} \
 		--mysql-port ${MYSQL_PORT} \
 		--mysql-database ${MYSQL_DATABASE} \
@@ -26,8 +15,14 @@ ${SQLITE_FILE}: output
 		--collation NOCASE \
 		--mysql-tables provinces cities districts
 
-output:
-	mkdir output
+	sqlite3 output/database.sqlite \
+		"\
+		CREATE INDEX idx_cities_parent ON cities(province_id, city_id); \
+		CREATE INDEX idx_districts_parent ON districts(province_id, city_id, district_id); \
+		CREATE INDEX idx_cities_parent_name ON cities(province_id, city_name); \
+		CREATE INDEX idx_districts_parent_name ON districts(province_id, city_id, district_name); \
+		VACUUM;\
+		"
 
 clean:
 	rm -rfv output
