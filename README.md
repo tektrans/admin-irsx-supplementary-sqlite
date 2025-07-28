@@ -10,8 +10,16 @@ pip install -r requirements.txt
 ```
 
 ### File .env
-Salin file ".env" yang berisi konfigurasi.
+Buat file ".env" yang berisi konfigurasi.
 Contoh dapat dilihat di file "[sample.env](sample.env)".
 
 ### File password.txt
 Buat file "password.txt" yang berisi password mysql.
+
+### Eksekusi
+
+```shell
+make
+```
+
+File hasil akan dibuat di "output/database.sqlite".
