@@ -5,11 +5,14 @@ export
 SQLITE_FILE ?= output/irsx-geography.sqlite
 
 optimizer: ${SQLITE_FILE}
-	sqlite3 ${SQLITE_FILE} "CREATE INDEX idx_cities_parent ON cities(province_id, city_id)" && \
-	sqlite3 ${SQLITE_FILE} "CREATE INDEX idx_districts_parent ON districts(province_id, city_id, district_id)" && \
-	sqlite3 ${SQLITE_FILE} "CREATE INDEX idx_cities_parent_name ON cities(province_id, city_name)" && \
-	sqlite3 ${SQLITE_FILE} "CREATE INDEX idx_districts_parent_name ON districts(province_id, city_id, district_name)" && \
-	sqlite3 ${SQLITE_FILE} "VACUUM"
+	sqlite3 ${SQLITE_FILE} \
+		"\
+		CREATE INDEX idx_cities_parent ON cities(province_id, city_id); \
+		CREATE INDEX idx_districts_parent ON districts(province_id, city_id, district_id); \
+		CREATE INDEX idx_cities_parent_name ON cities(province_id, city_name); \
+		CREATE INDEX idx_districts_parent_name ON districts(province_id, city_id, district_name); \
+		VACUUM;\
+		"
 
 ${SQLITE_FILE}: output
 	rm -fv ${SQLITE_FILE}
