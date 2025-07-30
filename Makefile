@@ -20,7 +20,7 @@ all:
 		ALTER TABLE areadomisili RENAME COLUMN IdAreaDomisili TO id_area_domisili; \
 		ALTER TABLE areadomisili RENAME COLUMN NamaAreaDomisili TO nama_area_domisili; \
 		\
-		ALTER TABLE cities ADD COLUMN city_name_prefix_with_type VARCHAR(300) NULL COLLATE NOCASE; \
+		ALTER TABLE cities ADD COLUMN \"city_name_prefix_with_type\" VARCHAR(300) NULL COLLATE NOCASE; \
 		UPDATE cities SET city_name_prefix_with_type = type || ' ' || city_name; \
 		\
 		CREATE INDEX idx_province_name ON provinces(province_name); \
