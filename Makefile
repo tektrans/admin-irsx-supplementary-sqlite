@@ -23,5 +23,7 @@ all:
 		CREATE INDEX idx_districts_parent ON districts(province_id, city_id, district_id); \
 		CREATE INDEX idx_cities_parent_name ON cities(province_id, city_name); \
 		CREATE INDEX idx_districts_parent_name ON districts(province_id, city_id, district_name); \
+		CREATE INDEX idx_areadomisili_name ON areadomisili(nama_area_domisili); \
+		CREATE INDEX idx_kelompokharga_name ON kelompokharga(nama); \
 		VACUUM;\
 		"
