@@ -1,5 +1,5 @@
-# irsx-geography-to-sqlite3
-Salin tabel provinces, cities, dan districts database IRSX ke dalam format sqlite3.
+# admin-irsx-supplementary-sqlite
+Salin tabel provinces, cities,districts dan beberapa tabel lain dari database mysql IRSX ke dalam format sqlite3.
 
 ## Cara pakai
 
