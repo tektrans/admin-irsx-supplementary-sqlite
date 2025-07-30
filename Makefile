@@ -13,7 +13,7 @@ all:
 		--mysql-user ${MYSQL_USER} \
 		--mysql-password `cat password.txt` \
 		--collation NOCASE \
-		--mysql-tables provinces cities districts areadomisili
+		--mysql-tables provinces cities districts areadomisili kelompokharga
 
 	sqlite3 output/database.sqlite \
 		"\
